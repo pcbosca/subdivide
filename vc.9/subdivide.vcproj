@@ -39,7 +39,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\Release\RMSE.tlb"
+				TypeLibraryName=".\Release\subdivide.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -51,7 +51,7 @@
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile=".\Release\RMSE.pch"
+				PrecompiledHeaderFile=".\Release\subdivide.pch"
 				AssemblerListingLocation=".\Release\"
 				ObjectFile=".\Release\"
 				ProgramDataBaseFileName=".\Release\"
@@ -78,7 +78,7 @@
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\lib"
-				ProgramDatabaseFile=".\Release\RMSE.pdb"
+				ProgramDatabaseFile=".\Release\subdivide.pdb"
 				SubSystem="1"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -130,7 +130,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\Debug\RMSE.tlb"
+				TypeLibraryName=".\Debug\subdivide.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -140,7 +140,7 @@
 				PreprocessorDefinitions="_DEBUG;WIN32;_CONSOLE;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\Debug\RMSE.pch"
+				PrecompiledHeaderFile=".\Debug\subdivide.pch"
 				AssemblerListingLocation=".\Debug\"
 				ObjectFile=".\Debug\"
 				ProgramDataBaseFileName=".\Debug\"
@@ -167,7 +167,7 @@
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="..\lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug\RMSE.pdb"
+				ProgramDatabaseFile=".\Debug\subdivide.pdb"
 				SubSystem="1"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
