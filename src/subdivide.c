@@ -23,6 +23,7 @@ q  quit
 
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #if defined(__APPLE__) && defined(__MACH__)
 #include <GLUT/glut.h>
 #else
