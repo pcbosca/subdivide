@@ -10,12 +10,10 @@ INCS=-I${GLUT_INC_LOCATION} -I../include
 ifeq ($(platform),Darwin)
 # OSX
 GLLIBS=-L${GLUT_LIB_LOCATION} -framework GLUT -framework OpenGL -framework Cocoa
-LIBS=${GLLIBS} -lm
 else
 GLLIBS=-L${GLUT_LIB_LOCATION} -lglut -lGL -lGLU
-LIBS=${GLLIBS} -lXext -lX11 -lm
 endif
-
+LIBS=${GLLIBS} -lm
 OBJS=subdivide.o file.o
 SOURCE=subdivide.c file.c
 BIN=../bin/subdivide
