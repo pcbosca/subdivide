@@ -34,12 +34,13 @@ q  quit
 
 #define X 0.525731112119133696f
 #define Z 0.850650808352039932f
-
-/* vertex data array */
-int numVertices = 12;
 #define MAX_SUBDIVS 6
 #define MAX_VERTICES 109630 /* 6 subdivisions MAX */
 #define NUM_TRIANGLES 20
+#define EPSILON 0.000001f
+
+/* vertex data array */
+int numVertices = 12;
 static GLfloat vdata[MAX_VERTICES][3] = {
     {-X, 0.0f, Z}, {X, 0.0f, Z}, {-X, 0.0f, -Z},
     {X, 0.0f, -Z}, {0.0f, Z, X}, {0.0f, Z, -X},
@@ -74,7 +75,7 @@ int subdiv = 0; /* number of subdivisions */
 void normalize(GLfloat v[3])
 {
     GLfloat d = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
-    /* omit explict check for division by zero */
+    /* omit explicit check for division by zero */
 
     v[0] /= d;
     v[1] /= d;
@@ -127,8 +128,6 @@ void drawTriangle(GLfloat v1[3], GLfloat v2[3], GLfloat v3[3])
     glEnd();
 }
 
-/* recursively subdivide face `depth' times */
-/* and draw the resulting triangles */
 /* glmAbs: returns the absolute value of a float */
 static GLfloat glmAbs(GLfloat f)
 {
@@ -154,23 +153,15 @@ static GLboolean glmEqual(GLfloat* u, GLfloat* v, GLfloat epsilon)
     return GL_FALSE;
 }
 
+/* remove duplicate vertices from the vertex data array */
 void removeDuplicateVertices(GLfloat vdata[][3])
 {
     int i, j, k;
-    GLfloat u[3], v[3];
 
     for (i = 0; i < numVertices; i++)
         for (j = i + 1; j < numVertices; j++) {
 
-            u[0] = vdata[i][0];
-            u[1] = vdata[i][1];
-            u[2] = vdata[i][2];
-
-            v[0] = vdata[j][0];
-            v[1] = vdata[j][1];
-            v[2] = vdata[j][2];
-
-            if (glmEqual(u, v, 0.000001f))
+            if (glmEqual(vdata[i], vdata[j], EPSILON))
             {
                 for (k = j; k < numVertices; k++) {
                     vdata[k][0] = vdata[k + 1][0];
@@ -182,6 +173,8 @@ void removeDuplicateVertices(GLfloat vdata[][3])
             }
         }
 }
+
+/* add a new vertex to the vertex data array */
 void addVertex(GLfloat v[3])
 {
     if (numVertices < MAX_VERTICES)
@@ -192,6 +185,8 @@ void addVertex(GLfloat v[3])
         numVertices++;
     }
 }
+
+/* recursively subdivide face `depth' times and draw the resulting triangles */
 void subdivide(GLfloat v1[3], GLfloat v2[3], GLfloat v3[3], int depth)
 {
     GLfloat v12[3], v23[3], v31[3];
@@ -289,8 +284,6 @@ void init()
 
 void keyboard(unsigned char key, int x, int y)
 {
-    char s[256];
-
     switch (key)
     {
     case 'q':
@@ -318,8 +311,9 @@ void keyboard(unsigned char key, int x, int y)
         fprintf(stderr, "Removing repeated vertices...\n");
         removeDuplicateVertices(vdata);
         fprintf(stderr, "Number of vertices = %d\n", numVertices);
-        sprintf(s, "%d.cam", numVertices);
-        saveFile(s, vdata, numVertices);
+        char filename[256];
+        sprintf(filename, "%d.cam", numVertices);
+        saveFile(filename, vdata, numVertices);
         break;
     default:
         break;
