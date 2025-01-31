@@ -9,7 +9,7 @@ CC=cc
 INCS=-I${GLUT_INC_LOCATION} -I../include
 ifeq ($(platform),Darwin)
 # OSX
-GLLIBS=-L${GLUT_LIB_LOCATION} -framework GLUT -framework OpenGL -framework Cocoa
+GLLIBS=-L${GLUT_LIB_LOCATION} -framework GLUT -framework OpenGL
 else
 GLLIBS=-L${GLUT_LIB_LOCATION} -lglut -lGL -lGLU
 endif
