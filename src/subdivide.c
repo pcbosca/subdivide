@@ -106,7 +106,6 @@ void normFace(GLfloat v1[3], GLfloat v2[3], GLfloat v3[3])
 
 void drawTriangle(GLfloat v1[3], GLfloat v2[3], GLfloat v3[3])
 {
-    glBegin(GL_TRIANGLES);
     if (flat)
     {
         /* draw a triangle using face normals (flat)*/
@@ -125,7 +124,6 @@ void drawTriangle(GLfloat v1[3], GLfloat v2[3], GLfloat v3[3])
         glNormal3fv(v3);
         glVertex3fv(v3);
     }
-    glEnd();
 }
 
 /* glmAbs: returns the absolute value of a float */
@@ -235,6 +233,7 @@ void display(void)
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 
     /* draw the icosahedron */
+    glBegin(GL_TRIANGLES);
     for (i = 0; i < NUM_TRIANGLES; i++)
     {
         subdivide(&vdata[tindices[i][0]][0],
@@ -242,7 +241,7 @@ void display(void)
             &vdata[tindices[i][2]][0],
             subdiv);
     }
-
+    glEnd();
     glFlush();
 }
 
@@ -273,7 +272,7 @@ void init()
     glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
     glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
-    glMaterialf(GL_LIGHT0, GL_SHININESS, mat_shininess);
+    glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess);
 
     glShadeModel(GL_SMOOTH); /* enable smooth shading */
     glEnable(GL_LIGHTING);   /* enable lighting */
