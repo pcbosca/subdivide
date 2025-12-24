@@ -274,7 +274,10 @@ void init()
     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
     glMaterialf(GL_FRONT, GL_SHININESS, mat_shininess);
 
-    glShadeModel(GL_SMOOTH); /* enable smooth shading */
+    /* set initial shade model according to `flat` */
+    if (flat) glShadeModel(GL_FLAT);
+    else glShadeModel(GL_SMOOTH);
+
     glEnable(GL_LIGHTING);   /* enable lighting */
     glEnable(GL_LIGHT0);     /* enable light 0 */
 
@@ -290,7 +293,7 @@ void keyboard(unsigned char key, int x, int y)
     case '+':
         if (subdiv < MAX_SUBDIVS) subdiv++;
         else {
-            fprintf(stderr, "Can't add more vertices MAX = %d\n", MAX_VERTICES);
+            fprintf(stderr, "Can't increase subdivisions beyond MAX = %d\n", MAX_SUBDIVS);
         }
         fprintf(stderr, "Number of subdivisions = %d\n", subdiv);
         break;
@@ -301,9 +304,11 @@ void keyboard(unsigned char key, int x, int y)
         break;
     case 'f':
         flat = 1;
+        glShadeModel(GL_FLAT);
         break;
     case 's':
         flat = 0;
+        glShadeModel(GL_SMOOTH);
         break;
     case 'w':
         fprintf(stderr, "Number of vertices = %d\n", numVertices);
