@@ -19,11 +19,11 @@ CC=cc
 INCS=-I$(HOMEBREW_PREFIX)/include -I../include
 ifeq ($(platform),Darwin)
 # macOS
-GLLIBS=-L$(HOMEBREW_PREFIX)/lib -framework GLUT -framework OpenGL
+GLLIBS=-framework GLUT -framework OpenGL
 else
-GLLIBS=-L$(HOMEBREW_PREFIX)/lib -lglut -lGL -lGLU
+GLLIBS=-lglut -lGL -lGLU
 endif
-LIBS=${GLLIBS} -lm
+LIBS=-L$(HOMEBREW_PREFIX)/lib ${GLLIBS} -lm
 OBJS=subdivide.o file.o
 SOURCE=subdivide.c file.c
 BIN=../bin/subdivide
