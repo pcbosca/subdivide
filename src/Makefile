@@ -13,7 +13,7 @@ else
 	HOMEBREW_PREFIX=/home/linuxbrew/.linuxbrew
 endif
 
-CFLAGS=-O2 -Wno-unused-value -Wno-deprecated
+CFLAGS=-O2 -Wno-deprecated
 CC=cc
 
 INCS=-I$(HOMEBREW_PREFIX)/include -I../include
