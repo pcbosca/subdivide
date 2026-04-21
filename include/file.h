@@ -1,5 +1,5 @@
-#ifndef __file_h_
-#define __file_h_
+#ifndef FILE_H
+#define FILE_H
 
 #ifdef __cplusplus
 extern "C" {
