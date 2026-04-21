@@ -1,5 +1,5 @@
-#ifndef __glm_h_
-#define __glm_h_
+#ifndef GLM_H
+#define GLM_H
 
 /*    
       glm.h
