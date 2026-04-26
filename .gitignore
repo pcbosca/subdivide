@@ -1,0 +1,10 @@
+*.o
+*.obj
+*.out
+*.app
+*.tmp
+*.temp
+*.log
+.DS_Store
+Thumbs.db
+
